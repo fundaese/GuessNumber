@@ -19,23 +19,15 @@ class GuessNumber : Response() {
         var guessRight = 3
 
         while (guessRight > 0) {
-            val number = readUserInput()
-
-            if (number == null || number == 0) {
-                break
-            }
+            val number = readUserInput() ?: break
 
             if (number < 0 || number > 100) {
                 println("Lütfen 0 ile 100 arasında bir sayı giriniz.")
                 continue
             }
 
-            if (checkGuess(number)) {
-                guessRight--
-            } else {
-                guessRight = 0
-            }
-
+            checkGuess(number)
+            guessRight--
         }
 
         finishGuessUnsuccessful(random)
@@ -65,6 +57,6 @@ class GuessNumber : Response() {
 }
 
 fun main() {
-   val game = GuessNumber()
-   game.start()
+    val game = GuessNumber()
+    game.start()
 }
